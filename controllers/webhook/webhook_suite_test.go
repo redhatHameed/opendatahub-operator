@@ -303,6 +303,11 @@ func newDSC(name string, namespace string) *dscv1.DataScienceCluster {
 						ManagementState: operatorv1.Removed,
 					},
 				},
+				FeatureStore: componentApi.DSCFeatureStore{
+					ManagementSpec: common.ManagementSpec{
+						ManagementState: operatorv1.Removed,
+					},
+				},
 			},
 		},
 	}

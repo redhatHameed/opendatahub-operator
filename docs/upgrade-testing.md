@@ -149,5 +149,7 @@ spec:
       managementState: Managed
     trustyai:
       managementState: Managed
+    featurestore:
+      managementState: Managed      
 EOF
 ```

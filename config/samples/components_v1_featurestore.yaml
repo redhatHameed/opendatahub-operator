@@ -1,0 +1,6 @@
+apiVersion: components.platform.opendatahub.io/v1
+kind: FeatureStore
+metadata:
+  name: featurestore-sample
+spec:
+# TODO(user): Add fields here

@@ -18,6 +18,8 @@ Package v1 contains API Schema definitions for the components v1 API group
 - [DashboardList](#dashboardlist)
 - [DataSciencePipelines](#datasciencepipelines)
 - [DataSciencePipelinesList](#datasciencepipelineslist)
+- [FeatureStore](#featurestore)
+- [FeatureStoreList](#featurestorelist)
 - [Kserve](#kserve)
 - [KserveList](#kservelist)
 - [Kueue](#kueue)
@@ -234,6 +236,40 @@ _Appears in:_
 
 
 DSCDataSciencePipelinesStatus contains the observed state of the DataSciencePipelines exposed in the DSC instance
+
+
+
+_Appears in:_
+- [ComponentsStatus](#componentsstatus)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `managementState` _[ManagementState](#managementstate)_ | Set to one of the following values:<br /><br />- "Managed" : the operator is actively managing the component and trying to keep it active.<br />              It will only upgrade the component if it is safe to do so<br /><br />- "Removed" : the operator is actively managing the component and will not install it,<br />              or if it is installed, the operator will try to remove it |  | Enum: [Managed Removed] <br /> |
+
+
+#### DSCFeatureStore
+
+
+
+DSCFeatureStore contains all the configuration exposed in DSC instance for FeatureStore component
+
+
+
+_Appears in:_
+- [Components](#components)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `managementState` _[ManagementState](#managementstate)_ | Set to one of the following values:<br /><br />- "Managed" : the operator is actively managing the component and trying to keep it active.<br />              It will only upgrade the component if it is safe to do so<br /><br />- "Removed" : the operator is actively managing the component and will not install it,<br />              or if it is installed, the operator will try to remove it |  | Enum: [Managed Removed] <br /> |
+| `devFlags` _[DevFlags](#devflags)_ | Add developer fields |  |  |
+| `storesNamespace` _string_ | Namespace for feature stores to be installed, configurable only once when feature store is enabled, defaults to "odh-feature-stores" | odh-feature-stores | MaxLength: 63 <br />Pattern: `^([a-z0-9]([-a-z0-9]*[a-z0-9])?)?$` <br /> |
+
+
+#### DSCFeatureStoreStatus
+
+
+
+DSCFeatureStoreStatus struct holds the status for the FeatureStore component exposed in the DSC
 
 
 
@@ -749,6 +785,119 @@ _Appears in:_
 | --- | --- |
 | `Serverless` | Serverless will be used as the default deployment mode for Kserve. This requires Serverless and ServiceMesh operators configured as dependencies.<br /> |
 | `RawDeployment` | RawDeployment will be used as the default deployment mode for Kserve.<br /> |
+
+
+#### FeatureStore
+
+
+
+FeatureStore is the Schema for the featurestores API
+
+
+
+_Appears in:_
+- [FeatureStoreList](#featurestorelist)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `apiVersion` _string_ | `components.platform.opendatahub.io/v1alpha1` | | |
+| `kind` _string_ | `FeatureStore` | | |
+| `kind` _string_ | Kind is a string value representing the REST resource this object represents.<br />Servers may infer this from the endpoint the client submits requests to.<br />Cannot be updated.<br />In CamelCase.<br />More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |  |  |
+| `apiVersion` _string_ | APIVersion defines the versioned schema of this representation of an object.<br />Servers should convert recognized schemas to the latest internal value, and<br />may reject unrecognized values.<br />More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `spec` _[FeatureStoreSpec](#featurestorespec)_ |  |  |  |
+| `status` _[FeatureStoreStatus](#featurestorestatus)_ |  |  |  |
+
+
+#### FeatureStoreCommonSpec
+
+
+
+FeatureStoreCommonSpec spec defines the shared desired state of FeatureStore
+
+
+
+_Appears in:_
+- [DSCFeatureStore](#dscfeaturestore)
+- [FeatureStoreSpec](#featurestorespec)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `devFlags` _[DevFlags](#devflags)_ | Add developer fields |  |  |
+| `storesNamespace` _string_ | Namespace for feature stores to be installed, configurable only once when feature store is enabled, defaults to "odh-feature-stores" | odh-feature-stores | MaxLength: 63 <br />Pattern: `^([a-z0-9]([-a-z0-9]*[a-z0-9])?)?$` <br /> |
+
+
+#### FeatureStoreCommonStatus
+
+
+
+FeatureStoreCommonStatus defines the shared observed state of FeatureStore
+
+
+
+_Appears in:_
+- [DSCFeatureStoreStatus](#dscfeaturestorestatus)
+- [FeatureStoreStatus](#featurestorestatus)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `storesNamespace` _string_ |  |  |  |
+
+
+#### FeatureStoreList
+
+
+
+FeatureStoreList contains a list of FeatureStore
+
+
+
+
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `apiVersion` _string_ | `components.platform.opendatahub.io/v1alpha1` | | |
+| `kind` _string_ | `FeatureStoreList` | | |
+| `kind` _string_ | Kind is a string value representing the REST resource this object represents.<br />Servers may infer this from the endpoint the client submits requests to.<br />Cannot be updated.<br />In CamelCase.<br />More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |  |  |
+| `apiVersion` _string_ | APIVersion defines the versioned schema of this representation of an object.<br />Servers should convert recognized schemas to the latest internal value, and<br />may reject unrecognized values.<br />More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |  |  |
+| `metadata` _[ListMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#listmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `items` _[FeatureStore](#featurestore) array_ |  |  |  |
+
+
+#### FeatureStoreSpec
+
+
+
+FeatureStoreSpec defines the desired state of FeatureStore
+
+
+
+_Appears in:_
+- [FeatureStore](#featurestore)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `devFlags` _[DevFlags](#devflags)_ | Add developer fields |  |  |
+| `storesNamespace` _string_ | Namespace for feature stores to be installed, configurable only once when feature store is enabled, defaults to "odh-feature-stores" | odh-feature-stores | MaxLength: 63 <br />Pattern: `^([a-z0-9]([-a-z0-9]*[a-z0-9])?)?$` <br /> |
+
+
+#### FeatureStoreStatus
+
+
+
+FeatureStoreStatus defines the observed state of FeatureStore
+
+
+
+_Appears in:_
+- [FeatureStore](#featurestore)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `phase` _string_ |  |  |  |
+| `observedGeneration` _integer_ |  |  |  |
+| `conditions` _[Condition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#condition-v1-meta) array_ |  |  |  |
+| `storesNamespace` _string_ |  |  |  |
 
 
 #### Kserve
@@ -1848,6 +1997,7 @@ _Appears in:_
 | `trustyai` _[DSCTrustyAI](#dsctrustyai)_ | TrustyAI component configuration. |  |  |
 | `modelregistry` _[DSCModelRegistry](#dscmodelregistry)_ | ModelRegistry component configuration. |  |  |
 | `trainingoperator` _[DSCTrainingOperator](#dsctrainingoperator)_ | Training Operator component configuration. |  |  |
+| `featurestore` _[DSCFeatureStore](#dscfeaturestore)_ | Feature Store component configuration. |  |  |
 
 
 #### ComponentsStatus
@@ -1874,6 +2024,7 @@ _Appears in:_
 | `trustyai` _[DSCTrustyAIStatus](#dsctrustyaistatus)_ | TrustyAI component status. |  |  |
 | `modelregistry` _[DSCModelRegistryStatus](#dscmodelregistrystatus)_ | ModelRegistry component status. |  |  |
 | `trainingoperator` _[DSCTrainingOperatorStatus](#dsctrainingoperatorstatus)_ | Training Operator component status. |  |  |
+| `featurestore` _[DSCFeatureStoreStatus](#dscfeaturestorestatus)_ | Feature Store component status. |  |  |
 
 
 #### ControlPlaneSpec

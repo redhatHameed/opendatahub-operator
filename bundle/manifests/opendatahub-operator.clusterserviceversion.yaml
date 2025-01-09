@@ -28,6 +28,9 @@ metadata:
               "datasciencepipelines": {
                 "managementState": "Managed"
               },
+              "featurestore": {
+                "managementState": "Removed"
+              },
               "kserve": {
                 "managementState": "Managed",
                 "nim": {
@@ -106,7 +109,7 @@ metadata:
     categories: AI/Machine Learning, Big Data
     certified: "False"
     containerImage: quay.io/opendatahub/opendatahub-operator:v2.21.0
-    createdAt: "2025-01-02T20:06:57Z"
+    createdAt: "2025-01-09T20:16:32Z"
     olm.skipRange: '>=1.0.0 <2.21.0'
     operators.operatorframework.io/builder: operator-sdk-v1.31.0
     operators.operatorframework.io/internal-objects: '["featuretrackers.features.opendatahub.io",
@@ -435,6 +438,7 @@ spec:
           - codeflares
           - dashboards
           - datasciencepipelines
+          - featurestores
           - kserves
           - kueues
           - modelcontrollers
@@ -457,6 +461,7 @@ spec:
           resources:
           - codeflares/finalizers
           - datasciencepipelines/finalizers
+          - featurestores/finalizers
           - kserves/finalizers
           - kueues/finalizers
           - modelcontrollers/finalizers
@@ -474,6 +479,7 @@ spec:
           - codeflares/status
           - dashboards/status
           - datasciencepipelines/status
+          - featurestores/status
           - kserves/status
           - kueues/status
           - modelcontrollers/status
@@ -1272,7 +1278,7 @@ spec:
                   value: /opt/manifests
                 - name: ODH_PLATFORM_TYPE
                   value: OpenDataHub
-                image: REPLACE_IMAGE:latest
+                image: quay.io/opendatahub/opendatahub-operator:latest
                 imagePullPolicy: Always
                 livenessProbe:
                   httpGet:

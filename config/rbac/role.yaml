@@ -175,6 +175,7 @@ rules:
   - codeflares
   - dashboards
   - datasciencepipelines
+  - featurestores
   - kserves
   - kueues
   - modelcontrollers
@@ -197,6 +198,7 @@ rules:
   resources:
   - codeflares/finalizers
   - datasciencepipelines/finalizers
+  - featurestores/finalizers
   - kserves/finalizers
   - kueues/finalizers
   - modelcontrollers/finalizers
@@ -214,6 +216,7 @@ rules:
   - codeflares/status
   - dashboards/status
   - datasciencepipelines/status
+  - featurestores/status
   - kserves/status
   - kueues/status
   - modelcontrollers/status

@@ -322,6 +322,8 @@ spec:
       managementState: Managed
     workbenches:
       managementState: Managed
+    featurestore:
+      managementState: Managed      
 ```
 
 2. Enable only Dashboard and Workbenches

@@ -178,6 +178,12 @@ var (
 		Kind:    componentApi.TrainingOperatorKind,
 	}
 
+	FeatureStore = schema.GroupVersionKind{
+		Group:   componentApi.GroupVersion.Group,
+		Version: componentApi.GroupVersion.Version,
+		Kind:    componentApi.FeatureStoreKind,
+	}
+
 	CustomResourceDefinition = schema.GroupVersionKind{
 		Group:   "apiextensions.k8s.io",
 		Version: "v1",
