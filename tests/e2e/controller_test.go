@@ -53,6 +53,7 @@ var (
 		componentApi.KserveComponentName:               kserveTestSuite,
 		componentApi.ModelMeshServingComponentName:     modelMeshServingTestSuite,
 		componentApi.ModelControllerComponentName:      modelControllerTestSuite,
+		componentApi.FeastOperatorComponentName:        feastOperatorTestSuite,
 	}
 )
 
